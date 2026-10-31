@@ -67,13 +67,40 @@ detectors still require individual applicability review; the demo does not remov
 that guard. Missing starter-code and required-file evidence remains unresolved.
 The labels represent a single-user local prototype, not authenticated grader roles.
 
+## How to run the demo (Windows)
+
+**Prerequisites:** Python 3.12 (3.11 will fail), Node.js LTS, Git. Ollama is not needed for the synthetic demo.
+
+**One-time setup**
+```
+git clone --branch main https://github.com/COMPRyanLI/hackathon.git
+cd hackathon
+py -3.12 -m venv backend\.venv
+.\setup-gradelens.cmd
+```
+Don't click in the window while setup runs; it can cancel the install.
+
+**Run**
+```
+.\start-gradelens.cmd
+```
+Open **http://127.0.0.1:8000/?demo#/import**. Remove `?demo` for the full interface.
+
+After pulling frontend changes, rebuild with `cd frontend; npm.cmd run build`. For live reload while editing, run `npm.cmd run dev` in `frontend/` and open port 5173 instead. Use `npm.cmd`, not `npm`, in PowerShell.
+
+**Demo path:** Load data → Find comparisons → Review queue (decide, with a required reason) → Clarify guidance (approve a note, see impact) → Audit log.
+
+The scripted comparison demo uses mock mode. The browser regression test verifies
+the D001/D003 comparison and the D006 impact result. If a run is partial, inspect
+its stage errors in the full interface rather than treating missing cases as findings.
+
 ## Quick start (Windows)
 
 Prerequisites:
 Python 3.12, Node.js LTS (v24 tested), Ollama running locally.
 
 ```powershell
-git clone --branch backend https://github.com/COMPRyanLI/hackathon.git
+git clone --branch main https://github.com/COMPRyanLI/hackathon.git
 cd hackathon
 .\setup-gradelens.cmd     # one time: venv, pinned packages, UI build, .env
 .\start-gradelens.cmd     # then open http://127.0.0.1:8000
@@ -326,11 +353,10 @@ screen.
   human-reviewed cases (plan §10); no accuracy figure has been measured.
 * No grading chronology, severity or drift analysis: the CSV has no timestamps
   or session data.
-* The frontend has no automated UI tests. It is verified by type check, build
-  and a manual browser walkthrough of the synthetic workflow (including note
-  approval, impact review and export). This does not cover every UI state.
-* The post-build check passed 59 backend tests and a fresh local Ollama run
-  with two real submissions and one reviewed pair. These are functionality
-  checks, not grading-accuracy measurements.
+* The latest application verification passed 123 tests, including five Playwright
+  browser tests, plus the frontend type check and production build. Browser tests
+  cover both polished demo paths and the original P1 workflow, not every UI state.
+* College30 validation passed 1,687 reference-answer checks and a disposable-database
+  import check. These are functionality checks, not grading-accuracy measurements.
 * Long or complex assignments beyond this small SA1 workload have not been
   validated against the local generation context window.
