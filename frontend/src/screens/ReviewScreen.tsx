@@ -24,6 +24,10 @@ import {
 } from "../components/common";
 import { ChannelTable } from "./RunsScreen";
 
+// Same flag as App.tsx: ?demo in the URL shows a simplified screen for recording.
+const DEMO = new URLSearchParams(window.location.search).has("demo");
+const human = (s: string | null | undefined) => (s ?? "").replace(/_/g, " ");
+
 const ACTION_LABELS: Record<string, string> = {
   difference_justified: "Difference justified",
   needs_clarification: "Needs clarification",
@@ -49,24 +53,33 @@ export default function ReviewScreen({ assessment, nav }: { assessment: Assessme
       <h2>
         Review queue <Loading show={cases.loading} />
       </h2>
-      <p className="muted">
-        Each case pairs retrieved, potentially comparable work with its original recorded scores (joined after the
-        semantic review). Cases are review prompts, not verdicts. Ordered by recorded-score gap, then reviewer relation.
-      </p>
-      <label className="inline">
-        Analysis run
-        <select value={runId} onChange={(e) => setRunId(e.target.value)}>
-          <option value="">All runs</option>
-          {(runs.data ?? []).filter((r) => r.kind === "pipeline").map((r) => (
-            <option key={r.id} value={r.id}>Run {r.id} · {r.status}</option>
-          ))}
-        </select>
-        <ErrorBox error={runs.error} />
-      </label>
-      <label className="inline">
-        <input type="checkbox" checked={includeStale} onChange={(e) => setIncludeStale(e.target.checked)} /> Include historical
-        (stale) cases
-      </label>
+      {DEMO ? (
+        <p className="muted" style={{ maxWidth: "48rem" }}>
+          Pairs of comparable submissions whose recorded scores differ. Each one is a question for a person, not a
+          verdict. Biggest score gaps first.
+        </p>
+      ) : (
+        <>
+          <p className="muted">
+            Each case pairs retrieved, potentially comparable work with its original recorded scores (joined after the
+            semantic review). Cases are review prompts, not verdicts. Ordered by recorded-score gap, then reviewer relation.
+          </p>
+          <label className="inline">
+            Analysis run
+            <select value={runId} onChange={(e) => setRunId(e.target.value)}>
+              <option value="">All runs</option>
+              {(runs.data ?? []).filter((r) => r.kind === "pipeline").map((r) => (
+                <option key={r.id} value={r.id}>Run {r.id} · {r.status}</option>
+              ))}
+            </select>
+            <ErrorBox error={runs.error} />
+          </label>
+          <label className="inline">
+            <input type="checkbox" checked={includeStale} onChange={(e) => setIncludeStale(e.target.checked)} /> Include historical
+            (stale) cases
+          </label>
+        </>
+      )}
       <ErrorBox error={cases.error} />
       {cases.data && cases.data.length === 0 ? (
         <p className="muted">No {includeStale ? "" : "current "}cases. Run an analysis, or include historical cases.</p>
@@ -75,10 +88,13 @@ export default function ReviewScreen({ assessment, nav }: { assessment: Assessme
         {(cases.data ?? []).map((c) => (
           <button key={c.id} type="button" className={`case-item ${c.is_current ? "" : "stale"}`} onClick={() => nav.go("review", { case: c.id })}>
             <div className="row gap wrap">
-              <strong>Case {c.id}</strong>
-              <Badge tone="info">{c.category}</Badge>
+              <strong>
+                {DEMO ? `${c.student_a} ↔ ${c.student_b}` : `Case ${c.id}`}
+              </strong>
+              <Badge tone="info">{DEMO ? human(c.category) : c.category}</Badge>
+              {c.score_gap !== null && DEMO ? <Badge tone="bad">{c.score_gap} pt gap</Badge> : null}
               <MockBadge show={c.is_mock} />
-              {c.origin === "deterministic_exact" ? <Badge tone="neutral">deterministic</Badge> : null}
+              {c.origin === "deterministic_exact" && !DEMO ? <Badge tone="neutral">deterministic</Badge> : null}
               {!c.is_current ? (
                 <Badge tone="warn" title={c.stale_reason ?? ""}>
                   historical
@@ -116,34 +132,58 @@ function CaseView({ id, nav, onBack, onDecided }: { id: number; nav: Nav; onBack
       {c ? (
         <>
           <h2>
-            Case {c.id} <Badge tone="info">{c.category}</Badge> <MockBadge show={c.is_mock} />
+            {DEMO ? `${c.student_a} ↔ ${c.student_b}` : `Case ${c.id}`}{" "}
+            <Badge tone="info">{DEMO ? human(c.category) : c.category}</Badge> <MockBadge show={c.is_mock} />
           </h2>
           {!c.is_current ? <Notice tone="warn">Historical case (not current): {c.stale_reason}</Notice> : null}
+
+          {DEMO ? (
+            <div className="cards" style={{ marginBottom: "0.8rem" }}>
+              {[
+                [c.student_a, c.score_a, c.grader_a],
+                [c.student_b, c.score_b, c.grader_b],
+              ].map(([student, score, grader], i) => (
+                <div key={i} className="card" style={{ padding: "1rem 1.3rem" }}>
+                  <div className="muted small">Recorded score · unchanged</div>
+                  <div style={{ fontSize: "2rem", fontWeight: 600, letterSpacing: "-0.03em" }}>{score ?? "blank"}</div>
+                  <div>
+                    <strong>{student}</strong> <span className="muted">· graded by {grader ?? "no grader label"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
           <p className="case-headline">{c.headline}</p>
           <div className="question">
-            <span className="label">Question for the head TA / instructor</span>
+            <span className="label">{DEMO ? "AI asks the instructor" : "Question for the head TA / instructor"}</span>
             <p>{c.question}</p>
           </div>
-          <KeyValues
-            rows={[
-              ["Origin", c.origin],
-              ["Context mode", c.context_mode],
-              ["Recorded scores (original, unchanged)", `${c.student_a}: ${c.score_a ?? "blank"} (${c.grader_a ?? "no grader label"}) · ${c.student_b}: ${c.score_b ?? "blank"} (${c.grader_b ?? "no grader label"})`],
-              ["Guidance versions", c.guidance_versions.length ? JSON.stringify(c.guidance_versions) : "none"],
-            ]}
-          />
-          <p className="muted small">
-            A whole-assignment score gap does not imply a question-level deduction. The grader assumption (row grader
-            graded all assessments) is a recorded working assumption.
-          </p>
+
+          {DEMO ? null : (
+            <>
+              <KeyValues
+                rows={[
+                  ["Origin", c.origin],
+                  ["Context mode", c.context_mode],
+                  ["Recorded scores (original, unchanged)", `${c.student_a}: ${c.score_a ?? "blank"} (${c.grader_a ?? "no grader label"}) · ${c.student_b}: ${c.score_b ?? "blank"} (${c.grader_b ?? "no grader label"})`],
+                  ["Guidance versions", c.guidance_versions.length ? JSON.stringify(c.guidance_versions) : "none"],
+                ]}
+              />
+              <p className="muted small">
+                A whole-assignment score gap does not imply a question-level deduction. The grader assumption (row grader
+                graded all assessments) is a recorded working assumption.
+              </p>
+            </>
+          )}
 
           <div className="sides">
             {c.sides.map((side, i) => (
               <div key={side.submission_id} className="side">
                 <h3>
-                  Submission {i + 1}: {side.student_id}
+                  {DEMO ? side.student_id : `Submission ${i + 1}: ${side.student_id}`}
                 </h3>
-                <p className="muted small">component scope: {side.component_scope_status}</p>
+                {DEMO ? null : <p className="muted small">component scope: {side.component_scope_status}</p>}
                 {side.artifacts.map((artifact) => (
                   <SideArtifact
                     key={artifact.id}
@@ -157,15 +197,17 @@ function CaseView({ id, nav, onBack, onDecided }: { id: number; nav: Nav; onBack
             ))}
           </div>
 
-          <h3>Reviewer comparison</h3>
+          <h3>{DEMO ? "How they differ" : "Reviewer comparison"}</h3>
           {c.comparison ? (
             <div className="card">
               <div className="row gap wrap">
-                <StatusBadge status={c.comparison.status} />
+                {DEMO ? <Badge tone="info">AI draft · verify before acting</Badge> : <StatusBadge status={c.comparison.status} />}
                 <MockBadge show={c.comparison.is_mock} />
-                <span className="muted small">
-                  {c.comparison.provider} · {c.comparison.model} · {c.comparison.prompt_version}
-                </span>
+                {DEMO ? null : (
+                  <span className="muted small">
+                    {c.comparison.provider} · {c.comparison.model} · {c.comparison.prompt_version}
+                  </span>
+                )}
                 {!c.comparison.is_current ? <Badge tone="warn">not current</Badge> : null}
               </div>
               {c.comparison.status === "failed" ? (
@@ -175,45 +217,57 @@ function CaseView({ id, nav, onBack, onDecided }: { id: number; nav: Nav; onBack
               ) : null}
               {result ? (
                 <>
-                  <KeyValues
-                    rows={[
-                      ["Relation", result.relation],
-                      ["Scope", result.scope],
-                      ["Requirement basis", result.requirement_basis],
-                      ["Equivalence level", result.equivalence_level ?? "—"],
-                      ["Suggested category", result.suggested_category],
-                    ]}
-                  />
-                  {result.requirement_basis === "unavailable" ? (
+                  {DEMO ? null : (
+                    <KeyValues
+                      rows={[
+                        ["Relation", result.relation],
+                        ["Scope", result.scope],
+                        ["Requirement basis", result.requirement_basis],
+                        ["Equivalence level", result.equivalence_level ?? "—"],
+                        ["Suggested category", result.suggested_category],
+                      ]}
+                    />
+                  )}
+                  {result.requirement_basis === "unavailable" && !DEMO ? (
                     <p className="note">No requirement basis: this is a content-level comparison; academic equivalence is unknown.</p>
                   ) : null}
-                  <ClaimList title="Shared observations" claims={result.shared_observations} onRef={onRef} />
-                  <ClaimList title="Material differences" claims={result.material_differences} onRef={onRef} />
-                  <ClaimList title="Contradicted analyst claims" claims={result.contradicted_analyst_claims} onRef={onRef} />
-                  <h4>Alternative explanations</h4>
+                  <ClaimList title={DEMO ? "What both do" : "Shared observations"} claims={result.shared_observations} onRef={onRef} />
+                  <ClaimList title={DEMO ? "Where they differ (click a quote to see it in the code)" : "Material differences"} claims={result.material_differences} onRef={onRef} />
+                  {DEMO && !(result.contradicted_analyst_claims ?? []).length ? null : (
+                    <ClaimList title="Contradicted analyst claims" claims={result.contradicted_analyst_claims} onRef={onRef} />
+                  )}
+                  <h4>{DEMO ? "Other possible explanations" : "Alternative explanations"}</h4>
                   <List items={result.alternative_explanations} />
-                  <h4>Missing context</h4>
-                  <List items={result.missing_context} />
+                  {DEMO ? null : (
+                    <>
+                      <h4>Missing context</h4>
+                      <List items={result.missing_context} />
+                    </>
+                  )}
                 </>
               ) : null}
-              <RejectedClaims items={c.comparison.rejected_claims} />
-              {result?.deterministic_differences ? (
-                <details>
-                  <summary>Deterministic differences (computed from source text)</summary>
-                  <JsonBlock value={result.deterministic_differences} />
-                </details>
-              ) : null}
-              <details>
-                <summary>What was sent to the reviewer</summary>
-                <KeyValues
-                  rows={[
-                    ["Provider / model", `${String(c.comparison.sent_content.provider)} / ${String(c.comparison.sent_content.model)}`],
-                    ["Included", (c.comparison.sent_content.included ?? []).join(", ")],
-                    ["Excluded", (c.comparison.sent_content.excluded ?? []).join(", ")],
-                    ["Prompt characters", String(c.comparison.sent_content.prompt_characters ?? "—")],
-                  ]}
-                />
-              </details>
+              {DEMO ? null : (
+                <>
+                  <RejectedClaims items={c.comparison.rejected_claims} />
+                  {result?.deterministic_differences ? (
+                    <details>
+                      <summary>Deterministic differences (computed from source text)</summary>
+                      <JsonBlock value={result.deterministic_differences} />
+                    </details>
+                  ) : null}
+                  <details>
+                    <summary>What was sent to the reviewer</summary>
+                    <KeyValues
+                      rows={[
+                        ["Provider / model", `${String(c.comparison.sent_content.provider)} / ${String(c.comparison.sent_content.model)}`],
+                        ["Included", (c.comparison.sent_content.included ?? []).join(", ")],
+                        ["Excluded", (c.comparison.sent_content.excluded ?? []).join(", ")],
+                        ["Prompt characters", String(c.comparison.sent_content.prompt_characters ?? "—")],
+                      ]}
+                    />
+                  </details>
+                </>
+              )}
             </div>
           ) : (
             <p className="muted">
@@ -222,12 +276,14 @@ function CaseView({ id, nav, onBack, onDecided }: { id: number; nav: Nav; onBack
             </p>
           )}
 
-          <details className="card">
-            <summary>Candidate retrieval diagnostics</summary>
-            <ChannelTable pair={c.candidate} />
-          </details>
+          {DEMO ? null : (
+            <details className="card">
+              <summary>Candidate retrieval diagnostics</summary>
+              <ChannelTable pair={c.candidate} />
+            </details>
+          )}
 
-          <h3>Decisions</h3>
+          <h3>{DEMO ? "Your decision" : "Decisions"}</h3>
           {c.decisions.length === 0 ? <p className="muted">No decisions yet.</p> : null}
           <ul className="plain-list">
             {c.decisions.map((d) => (
@@ -253,8 +309,12 @@ function CaseView({ id, nav, onBack, onDecided }: { id: number; nav: Nav; onBack
               onDecided();
             }}
           />
-          <button type="button" onClick={() => nav.go("notes", { from_case: c.id })}>
-            Create instructor note from this case
+          <button
+            type="button"
+            className={DEMO ? "primary" : ""}
+            onClick={() => nav.go("notes", { from_case: c.id })}
+          >
+            {DEMO ? "Clarify the guidance from this case →" : "Create instructor note from this case"}
           </button>
         </>
       ) : null}
@@ -284,23 +344,29 @@ function SideArtifact({
   ];
   return (
     <div className="side-artifact">
-      <div className="row gap wrap">
-        {artifact.label ? <Badge tone="info">{artifact.label}</Badge> : null}
-        <span className="small">{artifact.aliases.map((a) => a.relative_path).join(" = ")}</span>
-        <code className="small">{artifact.content_sha256.slice(0, 12)}</code>
-        {artifact.parse_status !== "ok" ? <Badge tone="bad">parse failed</Badge> : null}
-      </div>
+      {DEMO ? (
+        artifact.label ? <Badge tone="info">{artifact.label}</Badge> : null
+      ) : (
+        <div className="row gap wrap">
+          {artifact.label ? <Badge tone="info">{artifact.label}</Badge> : null}
+          <span className="small">{artifact.aliases.map((a) => a.relative_path).join(" = ")}</span>
+          <code className="small">{artifact.content_sha256.slice(0, 12)}</code>
+          {artifact.parse_status !== "ok" ? <Badge tone="bad">parse failed</Badge> : null}
+        </div>
+      )}
       <SourceView text={artifact.source_text} highlights={highlights} />
-      {artifact.issues.length ? (
+      {artifact.issues.length && !DEMO ? (
         <details>
           <summary>{artifact.issues.length} extraction issue(s)</summary>
           <IssueList issues={artifact.issues} />
         </details>
       ) : null}
-      <details>
-        <summary>Analyst summary (fallible)</summary>
-        <EvidencePanel record={artifact.evidence} onRef={onRef} />
-      </details>
+      {DEMO ? null : (
+        <details>
+          <summary>Analyst summary (fallible)</summary>
+          <EvidencePanel record={artifact.evidence} onRef={onRef} />
+        </details>
+      )}
     </div>
   );
 }
@@ -312,6 +378,7 @@ function DecisionForm({ caseId, studentA, studentB, onSaved }: { caseId: number;
   const [scoreB, setScoreB] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const needsReason = DEMO && !comment.trim();
 
   async function submit() {
     setBusy(true);
@@ -339,7 +406,7 @@ function DecisionForm({ caseId, studentA, studentB, onSaved }: { caseId: number;
       className="card form-stack"
       onSubmit={(e) => {
         e.preventDefault();
-        submit();
+        if (!needsReason) submit();
       }}
     >
       <h4>Record a decision</h4>
@@ -352,7 +419,13 @@ function DecisionForm({ caseId, studentA, studentB, onSaved }: { caseId: number;
         ))}
       </fieldset>
       <label>
-        Comment
+        {DEMO ? (
+          <span>
+            Reason <span className="bad">*</span> <span className="muted small">(required, saved to the audit log)</span>
+          </span>
+        ) : (
+          "Comment"
+        )}
         <textarea rows={2} value={comment} onChange={(e) => setComment(e.target.value)} />
       </label>
       <div className="row gap wrap">
@@ -367,7 +440,7 @@ function DecisionForm({ caseId, studentA, studentB, onSaved }: { caseId: number;
       </div>
       <p className="note">Proposal only — original scores are never changed.</p>
       <div>
-        <button type="submit" className="primary" disabled={busy}>
+        <button type="submit" className="primary" disabled={busy || needsReason}>
           Save decision
         </button>
       </div>

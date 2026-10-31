@@ -15,11 +15,40 @@ import { Badge, ErrorBox, JsonBlock, Loading, MockBadge, Notice, StatusBadge, er
 const STAGES = ["analyst", "embed_source", "embed_summary", "retrieval", "review", "applicability"];
 const CHANNELS = ["exact", "lexical", "structural", "source_vector", "summary_vector"];
 
+// Same flag as App.tsx: ?demo in the URL shows a simplified screen for recording.
+const DEMO = new URLSearchParams(window.location.search).has("demo");
+// Suggested pilot from the README. D006 is left out on purpose so the impact scan can find it later.
+const DEMO_STUDENTS = ["D001", "D002", "D003", "D004", "D005", "D007", "D008"];
+const STAGE_LABELS: Record<string, string> = {
+  analyst: "Summarize each submission",
+  embed_source: "Index source code",
+  embed_summary: "Index summaries",
+  retrieval: "Find comparable pairs",
+  review: "Explain differences",
+  applicability: "Check guidance",
+};
+
 export default function RunsScreen({ assessment, settings, nav }: { assessment: Assessment; settings: PublicSettings | null; nav: Nav }) {
   const runs = useLoad(() => api.get<Run[]>(`/analysis-runs${qs({ assessment_id: assessment.id })}`), [assessment.id]);
   const active = (runs.data ?? []).some((r) => r.status === "queued" || r.status === "running");
   usePoll(active, runs.reload);
   const selectedRun = Number(nav.params.get("run")) || null;
+
+  if (DEMO) {
+    const latest = [...(runs.data ?? [])].filter((r) => r.kind === "pipeline").sort((a, b) => b.id - a.id)[0] ?? null;
+    return (
+      <section>
+        <h2>Find comparisons</h2>
+        <p className="muted" style={{ maxWidth: "48rem" }}>
+          GradeLens looks for submissions similar enough to compare fairly, then drafts an explanation of how they
+          differ. It reviews a sample of pairs, not every possible one.
+        </p>
+        <DemoStartCard assessment={assessment} onStarted={runs.reload} busyRun={active} />
+        <ErrorBox error={runs.error} />
+        {latest ? <DemoRunCard run={latest} onReview={() => nav.go("review")} /> : null}
+      </section>
+    );
+  }
 
   return (
     <section>
@@ -38,6 +67,88 @@ export default function RunsScreen({ assessment, settings, nav }: { assessment: 
     </section>
   );
 }
+
+// ------------------------------------------------------------------ demo-only pieces
+
+function DemoStartCard({ assessment, onStarted, busyRun }: { assessment: Assessment; onStarted: () => void; busyRun: boolean }) {
+  const subs = useLoad(() => api.get<SubmissionSummary[]>(`/assessments/${assessment.id}/submissions`), [assessment.id]);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const picked = (subs.data ?? []).filter((s) => DEMO_STUDENTS.includes(s.student_id));
+
+  async function start() {
+    setBusy(true);
+    setError(null);
+    try {
+      await api.post(`/assessments/${assessment.id}/analysis-runs`, {
+        submission_ids: picked.map((s) => s.id),
+        pilot_size: picked.length,
+        review_budget: null,
+        top_k: null,
+        provider_mode: "mock",
+      });
+      onStarted();
+    } catch (err) {
+      setError(errorText(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="card" style={{ maxWidth: "48rem", padding: "1.4rem 1.6rem" }}>
+      <p style={{ marginTop: 0 }}>
+        <strong>{picked.length}</strong> submissions selected: {picked.map((s) => s.student_id).join(", ") || "loading…"}
+      </p>
+      <div className="row gap wrap">
+        <button type="button" className="primary" onClick={start} disabled={busy || busyRun || picked.length < 2 || !assessment.is_synthetic}>
+          {busyRun ? "Running…" : "Find comparisons"}
+        </button>
+        <MockBadge show />
+      </div>
+      <p className="muted small" style={{ marginBottom: 0 }}>
+        Demo mode uses scripted model responses so the walkthrough is reproducible.
+      </p>
+      <ErrorBox error={subs.error || error} />
+    </div>
+  );
+}
+
+function DemoRunCard({ run, onReview }: { run: Run; onReview: () => void }) {
+  const done = ["succeeded", "partial"].includes(run.status);
+  const stages = STAGES.filter((s) => run.progress?.[s]);
+  return (
+    <div className="card" style={{ maxWidth: "48rem", padding: "1.4rem 1.6rem" }}>
+      <div className="row gap wrap">
+        <strong>Latest run</strong>
+        <StatusBadge status={run.status} />
+        {run.stage && !done ? <span className="muted">{STAGE_LABELS[run.stage] ?? run.stage}…</span> : null}
+      </div>
+      {stages.length ? (
+        <ul className="plain-list" style={{ marginTop: "0.6rem" }}>
+          {stages.map((s) => {
+            const err = (run.progress[s] as Record<string, unknown>).error;
+            return (
+              <li key={s}>
+                {err ? "⚠️" : "✓"} {STAGE_LABELS[s] ?? s}
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+      {run.error ? <Notice tone="bad">The run hit an error. Switch off demo mode (remove ?demo) to see details.</Notice> : null}
+      {done ? (
+        <div className="row gap" style={{ marginTop: "0.6rem" }}>
+          <button type="button" className="primary" onClick={onReview}>
+            Continue to review queue →
+          </button>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------ full screen pieces
 
 function ProvidersPanel() {
   const status = useLoad(() => api.get<ProviderStatus>("/providers/status"), []);
