@@ -11,7 +11,7 @@ import {
   type ImpactItem,
   type NoteVersion,
 } from "../api";
-import { Badge, ErrorBox, JsonBlock, KeyValues, Loading, MockBadge, Notice, StatusBadge, errorText, fmtScore, fmtTime, useLoad, usePoll } from "../components/common";
+import { Badge, ErrorBox, JsonBlock, KeyValues, Loading, MockBadge, NewlyFoundCallout, Notice, StatusBadge, errorText, fmtScore, fmtTime, useLoad, usePoll } from "../components/common";
 
 const KINDS: [string, string, string][] = [
   ["clarification", "Clarification of existing expectations", "States what was already expected. Past grading can be checked against it."],
@@ -419,6 +419,7 @@ export function ImpactView({ versionId, onBack, backLabel = "← back to notes" 
           <h2>
             Impact review · note {d.note.note_id} v{d.note.version} <StatusBadge status={d.note.status} />
           </h2>
+          <NewlyFoundCallout impact={d} />
           <Notice tone="info">{d.statement || "Potential impact only. No grades were changed."}</Notice>
           {d.note.note_kind === "prospective_policy" ? (
             <Notice tone="warn">Prospective policy: these results are informational and do not establish a past grading standard.</Notice>
