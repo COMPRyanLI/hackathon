@@ -20,6 +20,53 @@ walkthrough, test results and limitations in
 [`docs/P1-RUN-AND-DEMO.md`](docs/P1-RUN-AND-DEMO.md). The Grading workspace
 is now the first tab; all P0 screens remain.
 
+## Partial-credit calibration demo (two minutes)
+
+The polished UI has a focused route: `?demo=calibration#/grading`.
+It keeps the existing theme and exposes four steps: **Grade & feedback → Ask once
+→ Apply guidance → Review changes**. Normal navigation and the original `?demo`
+comparison walkthrough remain available. This focused route is restricted to the
+known `synthetic-p1` SA6 fixture; it is not a general-purpose grading screen.
+
+From the repository root, after installing dependencies:
+
+```powershell
+npm --prefix frontend run build
+powershell -ExecutionPolicy Bypass -File scripts/start-calibration-demo.ps1
+```
+
+The launcher uses port 8002, prints the exact recording URL, and creates a new
+database under `data/private/calibration-take-*` on every launch. It seeds three
+invented drafts: P002 has 2/6 correctness (total 6), P004 has 5/6 (total 9), and
+P007 has 1/6 (total 5), with different synthetic grader labels. It requests no
+calibration and approves no guidance. Model analysis is mocked, whereas saving,
+question grouping, applicability rules, approval and revision use the real APIs.
+Keep the terminal open. Ctrl+C stops that server; run the launcher again for a
+fresh take. If another server uses the port, pass `-Port 8003`. Existing databases
+are never overwritten. If the assessment selector remembers another task, choose
+`[SYNTHETIC] synthetic-p1 · SA6` or click **Load calibration example**.
+
+Keep the synthetic banner visible. Use a 1440×1000 or larger browser viewport
+and leave technical details collapsed. The first screen starts with P007.
+
+| Time | Action | Narration |
+|---|---|---|
+| 0:00–0:20 | Show the three correctness-score cards. | “The same partial-credit question can produce very different grades. Here three graders award two, five and one of six correctness points. GradeLens helps them establish a shared standard. These are invented students with scripted model analysis.” |
+| 0:20–0:40 | Click **Save draft & check**, then **Ask head TA once**, then **View shared question · 3 submissions**. | “Saving a draft brings back feedback without interrupting grading. The missing diagonal-check candidate needs a grading interpretation, so the system asks one question and groups the three matching cases. It does not invent a deduction.” |
+| 0:40–1:05 | Enter minimum **3**, maximum **4**, paste the reason below, check the confirmation, and approve. | “The head TA reviews the examples and sets a three-to-four-point range for otherwise working search. If backtracking is also missing, that needs individual review. This is one reusable answer, rather than a separate conversation for every student.” |
+| 1:05–1:25 | Show the impact table: original draft points alongside 3–4 proposals. | “The approved answer is checked across the assignment. Three matching cases receive the same range; different cases remain outside this rule. Notice that the draft scores have not changed. This is guidance, not automatic regrading.” |
+| 1:25–1:50 | Click **Review a grade change**. For P007 enter correctness **3** and assignment total **7**. Click **Confirm my revision**. | “The grader reviews the proposal, chooses three correctness points and explicitly revises the total. The old draft remains in the revision history and the imported grade is preserved. Approval alone could not make this change.” |
+| 1:50–2:00 | Return to **Grade & feedback** and show approved guidance reused. | “Later drafts reuse the approved answer without another head-TA question. Shared expectations, reviewable exceptions, and people in control.” |
+
+Suggested head-TA reason to paste:
+
+> Credit the working search; missing diagonal validation limits correctness. Review other defects separately.
+
+No claim of grading accuracy follows from this scripted fixture. Real SA6 pattern
+detectors still require individual applicability review; the demo does not remove
+that guard. Missing starter-code and required-file evidence remains unresolved.
+The labels represent a single-user local prototype, not authenticated grader roles.
+
 ## Quick start (Windows)
 
 Prerequisites:
@@ -121,6 +168,14 @@ channels are disclosed.
    are escaped.
 
 ### Synthetic demo
+
+For independent team grading and a 2½-minute video, use the
+[`College30 packet`](fixtures/synthetic/college30/README.md): 30 synthetic
+students, 60 Python submissions across two public-course-inspired assignments,
+demo-authored analytic rubrics, reference solutions, blank grading forms and a
+[`150-second recording guide`](fixtures/synthetic/college30/DEMO_150_SECONDS.md).
+This packet uses the P0 review workflow; its guide separately describes the
+existing scripted P1 calibration demonstration.
 
 "Load SYNTHETIC demo dataset" on the Import screen imports
 `fixtures/synthetic/demo/`. It contains invented students D001–D009 and scripted

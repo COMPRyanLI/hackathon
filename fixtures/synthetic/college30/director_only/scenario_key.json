@@ -1,0 +1,392 @@
+[
+  {
+    "student_id": "T001",
+    "control": [
+      "correct descending search",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T002",
+    "control": [
+      "correct smallest-divisor shortcut",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct for loop",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T003",
+    "control": [
+      "correct ascending search",
+      "counts transitions, not printed values"
+    ],
+    "higher": [
+      "exclusive endpoint",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T004",
+    "control": [
+      "correct comprehension",
+      "counts transitions, not printed values"
+    ],
+    "higher": [
+      "exclusive endpoint",
+      "correct while loop",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T005",
+    "control": [
+      "correct descending search",
+      "uses true division; numeric sequence OK but prints floats"
+    ],
+    "higher": [
+      "zero initial product",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T006",
+    "control": [
+      "correct smallest-divisor shortcut",
+      "uses true division; numeric sequence OK but prints floats"
+    ],
+    "higher": [
+      "zero initial product",
+      "correct while loop",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T007",
+    "control": [
+      "correct ascending search",
+      "uses true division; numeric sequence OK but prints floats"
+    ],
+    "higher": [
+      "ignores term callback",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T008",
+    "control": [
+      "correct half-range search",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct recursive product",
+      "correct recursion preserving ascending fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T009",
+    "control": [
+      "returns smallest nontrivial divisor; primes OK",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "drops base",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T010",
+    "control": [
+      "returns smallest nontrivial divisor; primes OK",
+      "correct recursive sequence"
+    ],
+    "higher": [
+      "correct for loop",
+      "drops base",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T011",
+    "control": [
+      "includes n as its own factor",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "exclusive endpoint",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T012",
+    "control": [
+      "prime case returns None",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "hardcodes addition instead of merger",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T013",
+    "control": [
+      "assumes every input is even",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "ignores term",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T014",
+    "control": [
+      "tests quotient instead of remainder",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "resets to base on each iteration",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T015",
+    "control": [
+      "only checks divisors up to square root, omits paired factor",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "returns None for n=0",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T016",
+    "control": [
+      "prints result instead of returning it",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "reverse traversal; differs for commutative non-associative mergers",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T017",
+    "control": [
+      "correct descending search",
+      "omits final printed 1 and counts transitions"
+    ],
+    "higher": [
+      "zero-based range",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T018",
+    "control": [
+      "correct smallest-divisor shortcut",
+      "correct count but prints whole list on one line"
+    ],
+    "higher": [
+      "adds instead of multiplying",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T019",
+    "control": [
+      "correct ascending search",
+      "missing return"
+    ],
+    "higher": [
+      "returns inside loop",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T020",
+    "control": [
+      "correct comprehension",
+      "computes sequence length without printing"
+    ],
+    "higher": [
+      "correct reduction",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T021",
+    "control": [
+      "correct half-range search",
+      "special case n=1 returns zero"
+    ],
+    "higher": [
+      "correct while loop",
+      "correct left fold",
+      "product wrapper starts at zero"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T022",
+    "control": [
+      "correct descending search",
+      "correct recursive sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "correct left fold",
+      "wrappers bypass required accumulate abstraction"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T023",
+    "control": [
+      "correct smallest-divisor shortcut",
+      "correct list-based implementation"
+    ],
+    "higher": [
+      "correct for loop",
+      "correct while loop",
+      "correct values but two-statement wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T024",
+    "control": [
+      "prime case returns None",
+      "counts transitions, not printed values"
+    ],
+    "higher": [
+      "exclusive endpoint",
+      "exclusive endpoint",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T025",
+    "control": [
+      "returns smallest nontrivial divisor; primes OK",
+      "uses true division; numeric sequence OK but prints floats"
+    ],
+    "higher": [
+      "ignores term callback",
+      "ignores term",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T026",
+    "control": [
+      "correct comprehension",
+      "correct recursive sequence"
+    ],
+    "higher": [
+      "correct recursive product",
+      "correct while loop",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T027",
+    "control": [
+      "correct half-range search",
+      "correct list-based implementation"
+    ],
+    "higher": [
+      "correct reduction",
+      "correct recursion preserving ascending fold",
+      "correct one-line wrappers"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T028",
+    "control": [
+      "assumes every input is even",
+      "omits final printed 1 and counts transitions"
+    ],
+    "higher": [
+      "zero initial product",
+      "drops base",
+      "product wrapper starts at zero"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T029",
+    "control": [
+      "tests quotient instead of remainder",
+      "missing return"
+    ],
+    "higher": [
+      "returns inside loop",
+      "resets to base on each iteration",
+      "wrappers bypass required accumulate abstraction"
+    ],
+    "extra": ""
+  },
+  {
+    "student_id": "T030",
+    "control": [
+      "correct descending search",
+      "correct iterative sequence"
+    ],
+    "higher": [
+      "correct while loop",
+      "correct left fold",
+      "correct one-line wrappers"
+    ],
+    "extra": "CONTROL missing colon; HIGHER product returns undefined answer"
+  }
+]

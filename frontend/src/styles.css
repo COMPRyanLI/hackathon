@@ -365,8 +365,19 @@ details > summary { cursor: pointer; color: var(--accent); margin: 0.3rem 0; fon
 .excerpt mark { background: var(--hl-focus); color: inherit; padding: 0 0.1rem; border-radius: 4px; }
 .prerelease .card h5 { margin: 0.6rem 0 0.2rem; }
 .snapshot-result { margin-top: 0.6rem; }
+.calibration-demo { max-width: 1180px; margin: 0 auto; }
+.calibration-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.calibration-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+.calibration-score { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; color: var(--text); }
+.calibration-score.selected { outline: 2px solid var(--accent); }
+.calibration-score strong, .calibration-number { font-size: 2.1rem; font-weight: 600; margin: 0.3rem 0; }
+.calibration-score small, .calibration-number small { font-size: 0.95rem; font-weight: 400; color: var(--muted); }
+.calibration-demo details { margin-top: 1rem; }
+.calibration-demo input:not([type="checkbox"]) { width: 100%; }
+.calibration-demo .form-stack { gap: 0.7rem; }
+.calibration-demo .form-stack label:not(.inline) { display: flex; flex-direction: column; gap: 0.25rem; }
 @media (max-width: 960px) {
+  .calibration-columns, .calibration-grid { grid-template-columns: 1fr; }
   .grading-layout { grid-template-columns: 1fr; }
   .grading-queue { position: static; }
-}
 }

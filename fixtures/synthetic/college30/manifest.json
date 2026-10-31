@@ -1,0 +1,490 @@
+{
+  "dataset_key": "synthetic-college30-v1",
+  "students": 30,
+  "assessments": [
+    "CONTROL",
+    "HIGHER"
+  ],
+  "files": [
+    {
+      "student_id": "T001",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T001_control.py",
+      "sha256": "0d118c8e0dfe1dac957a28542aa7b04e2369a4e34d6ffba732389ffec5aaa32c",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T001",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T001_higher.py",
+      "sha256": "2633f7fe78f0884663e067c839009de98cc064c6cd85ff5bcc64fa81e7fc44df",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T002",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T002_control.py",
+      "sha256": "b7c3930403c3dfd9b231761581574256b279f0092ef701c20fd0334c69bd2006",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T002",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T002_higher.py",
+      "sha256": "94973f7a7a541c1454ae8cf3321faf52ee5c0992730ce9181fe26523497955f7",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T003",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T003_control.py",
+      "sha256": "ef0cc01ec8e50df7d836fe6b29a2fc2cac3ec7023d4ecf07b0d616494c8182d5",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T003",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T003_higher.py",
+      "sha256": "dcccf6f58ca2d538e92f2cbf3c6551bb42f55d63145e58e77e39fa9b52b4a155",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T004",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T004_control.py",
+      "sha256": "10a666643efe48b4a6c05ed9f2d3a578a5cf52c9a29e27c987b66315dfd6284d",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T004",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T004_higher.py",
+      "sha256": "92eeddd93b87484f381070960e48e90f194de2728b123b8bf31d410ab116e3d4",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T005",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T005_control.py",
+      "sha256": "a7869c481f632a5a6e9904ac729c1fca1539add74b7b1037ae35321871da2cf4",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T005",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T005_higher.py",
+      "sha256": "d06568fc4ec1e7b091387bd865deeca0b22f9930f1a2a058f3b243bbc8e9e5f1",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T006",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T006_control.py",
+      "sha256": "3813ef998718ccab7c76a3da0bd48adf889b8338b292bc954e04b8605c93b32c",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T006",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T006_higher.py",
+      "sha256": "5a6edab4650ddbf178a628899066d6dd6827603f244bcc96f25116ffce41621e",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T007",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T007_control.py",
+      "sha256": "99c01bf795b1f3db5ded1823c1e353e5c8d5fc88740b063ae1aa3b69c90374b9",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T007",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T007_higher.py",
+      "sha256": "c0fc11b04a0b66f6f3be8c997d463c7bba490b164bad456ac738a85401e8c281",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T008",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T008_control.py",
+      "sha256": "e9fa6b2dd40904aef133b942245f6c69fe4d49db657a0fe44ec073c0ae3ee7bc",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T008",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T008_higher.py",
+      "sha256": "7acd7e59af01999fbe3ee526f0748f4f1cb640c0027ff560070ba61542a8ac4d",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T009",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T009_control.py",
+      "sha256": "befe8706e0550c75d1c5b979241f363a18c35065969c833ba4b84b14a36afc73",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T009",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T009_higher.py",
+      "sha256": "42a1ccf89ced8a18af9d347f6c54ed196db1119f9ec93ffba765d8ebbbc02c60",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T010",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T010_control.py",
+      "sha256": "f95e4f3f7edeabd283872822b8a75183f6993706fa4f8a335386dff49efe8093",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T010",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T010_higher.py",
+      "sha256": "22a5dbb828299e2e62c9ae1388e082ca09f5af730a5a74606421631baf42b799",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T011",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T011_control.py",
+      "sha256": "e09e80bb144c43d22e650ecd63a71d2f4a8dd61eba64f2567b90096aca850870",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T011",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T011_higher.py",
+      "sha256": "498d5c60660aaaa363bb79919fff4e693b340ef86f481f5c47be01563347ed0c",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T012",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T012_control.py",
+      "sha256": "abc79221d1cdb5873bd76fe07427e96690774cfd6947ee735c5e81bbf7eb7ff8",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T012",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T012_higher.py",
+      "sha256": "277d385f78f7a420eb80c145dea89f37bb9f875bbdb458fd81dc9acc4cb561df",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T013",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T013_control.py",
+      "sha256": "dcc9c60c8e6b71c3ce0e660eb767bccc74be29be6fc82d3a5d87fadb49298ddb",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T013",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T013_higher.py",
+      "sha256": "7103867b68b4d60049cb1af12ff3b03ad105b2e05e84966e4360c8a9c4703378",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T014",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T014_control.py",
+      "sha256": "6d11cc9c768071ab5c3a80bf92c620e7bf7f3e7357aee702ebdee52f9d3b1302",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T014",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T014_higher.py",
+      "sha256": "4a635fa2132a64843fc33de3f7a5fd7bc69702c9df87e0026ccaa765d0cacf30",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T015",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T015_control.py",
+      "sha256": "a6513eb79ca03522a8df7276dfe5db93ca24157086ab82e3766a2293a3dd2673",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T015",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T015_higher.py",
+      "sha256": "5250ee23b3a42b13c07b6b44b9e13125116744ab13dc5f0b83e68254a99e8785",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T016",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T016_control.py",
+      "sha256": "fa3f5adf2ae1d70c63ed32ce6f0c58eda58bacc0d244ad931ad3f35925df1a9f",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T016",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T016_higher.py",
+      "sha256": "3c7c441a2d455b753fa7ba7e70dcedea5a2f60bb65fdf9a3eb610ccfb6138bf8",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T017",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T017_control.py",
+      "sha256": "104cf163a15af63e7c48d232ad5d340102e5118d1dc2d30aa89a1a01f535d6e1",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T017",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T017_higher.py",
+      "sha256": "d259246cc62578216c6f396380338297a6f0610b17cdf81f9c146c11f8c7a750",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T018",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T018_control.py",
+      "sha256": "563dee6d0e9efce2120dfd2709baa144b71730a7ecefcedc10f207dc6a5a47dd",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T018",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T018_higher.py",
+      "sha256": "3b4e5d00f8cc18f58d9bd27a776112d61900dd02e70a7343e481247a3666e16e",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T019",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T019_control.py",
+      "sha256": "841147a5209fab9ad9728b436a376a30ca5c06c38854a2fe8f7d861faff670ff",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T019",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T019_higher.py",
+      "sha256": "b1354ea911288adb878752cc05e4365297307290dc0ee3e4b3ee9bafdaf8ece9",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T020",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T020_control.py",
+      "sha256": "f22cb2ac993ce61fb8f9d4e1a7f40affab8e1e30bdf4aa2133cce68bcf771bb8",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T020",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T020_higher.py",
+      "sha256": "fdab3673e9ad8830e623a67907a792f1eaef1f57e8f29956ce0cf059801a1279",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T021",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T021_control.py",
+      "sha256": "6204d755714ef5715ac1a51401750391f479df3c47334568caa0a0af44f833b4",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T021",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T021_higher.py",
+      "sha256": "c776b4d2c62e01a6017f6c665f5f3e98b6d6f40b20dcf52203ca47bf711fc778",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T022",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T022_control.py",
+      "sha256": "03c74b0d140db97642374645b535c2c08c507be0aa514126de00e7eb7f573192",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T022",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T022_higher.py",
+      "sha256": "10df0cace809a5483c3fef37422c4296a5a3bffd92c7f8634400b20d5501553b",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T023",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T023_control.py",
+      "sha256": "781a60fa0b62924ddcd1cf3b165344f0b3db75502bb0f6ede12172711fb315a0",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T023",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T023_higher.py",
+      "sha256": "dc85b3044a775bacb0b0a15d6b87921d02903df7898f469cc1f1699c961f8abe",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T024",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T024_control.py",
+      "sha256": "9cba2413fcbb96fa84f5024e5370957b8d2507df5b226c101840e539635a406d",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T024",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T024_higher.py",
+      "sha256": "ea17e764f082db4cd7c3c9c7a3e843525c650e2aad21b40b49f8142efe4055b8",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T025",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T025_control.py",
+      "sha256": "445b5f3155f5d49a1583af7d5fac54b377c507f495e7705600c7a4377bec380a",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T025",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T025_higher.py",
+      "sha256": "5130b19fd766094573d10b95b108dc88b90be36f906f4e1f905b5324bf1d5103",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T026",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T026_control.py",
+      "sha256": "f595487e68523b37ae91a6cbad7475a5ebd855070d5505dcdea824b16d99622c",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T026",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T026_higher.py",
+      "sha256": "f669cd3e4eae192bc9e9b8851f6286d768aa36520ef1a3a27d30cd1046c23084",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T027",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T027_control.py",
+      "sha256": "73cceea382fed17b99848a050ae69bfa26747267ada64fca8af1ac0db019cef4",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T027",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T027_higher.py",
+      "sha256": "02d2a7612fea2fb9c9981350e9da7203e865b9f50c191ce2fab11169f6ed35b4",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T028",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T028_control.py",
+      "sha256": "7809a3cc36f75b6c75797b8c2adc8665b4eb1da795226bc82e0a60fee209a1ec",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T028",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T028_higher.py",
+      "sha256": "cecd1cc6765605ea21f07a03a466337bf490cea9f8013b8464aff2db643bb180",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T029",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T029_control.py",
+      "sha256": "727b5f73fe95ebeca77c28850ee7468c127d098fd5045f85006b5451c1998ffe",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T029",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T029_higher.py",
+      "sha256": "0c858eb41b500f14461b0268ce888b172cf5512a4d36d79bade8f05d92df1e1a",
+      "synthetic": true,
+      "expected_parse": "ok"
+    },
+    {
+      "student_id": "T030",
+      "assessment": "CONTROL",
+      "path": "submissions/CONTROL/T030_control.py",
+      "sha256": "0eeb925d89642b23a854a20015ec805b45efc218f228f13c880a84f4489fb200",
+      "synthetic": true,
+      "expected_parse": "error"
+    },
+    {
+      "student_id": "T030",
+      "assessment": "HIGHER",
+      "path": "submissions/HIGHER/T030_higher.py",
+      "sha256": "877d2ef44e2efe75123db6b108d0cf13bb7f018b752a0515be1c9b9ca9dad591",
+      "synthetic": true,
+      "expected_parse": "ok"
+    }
+  ]
+}

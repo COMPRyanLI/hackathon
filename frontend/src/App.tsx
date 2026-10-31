@@ -13,6 +13,7 @@ import NotesScreen from "./screens/NotesScreen";
 import ReviewScreen from "./screens/ReviewScreen";
 import RunsScreen from "./screens/RunsScreen";
 import SubmissionsScreen from "./screens/SubmissionsScreen";
+import CalibrationDemo from "./screens/CalibrationDemo";
 
 export type Screen =
   | "grading" | "issues" | "rubric" | "prerelease"
@@ -34,6 +35,13 @@ const SCREENS: { id: Screen; label: string }[] = [
 
 // Open with ?demo (e.g. http://127.0.0.1:5173/?demo#/import) to show only the demo path.
 const DEMO = new URLSearchParams(window.location.search).has("demo");
+const CALIBRATION = new URLSearchParams(window.location.search).get("demo") === "calibration";
+const CALIBRATION_NAV: { id: Screen; label: string }[] = [
+  { id: "grading", label: "1 · Grade & feedback" },
+  { id: "issues", label: "2 · Ask once" },
+  { id: "notes", label: "3 · Apply guidance" },
+  { id: "prerelease", label: "4 · Review changes" },
+];
 const DEMO_NAV: { id: Screen; label: string }[] = [
   { id: "import", label: "1 · Load data" },
   { id: "runs", label: "2 · Find comparisons" },
@@ -41,8 +49,8 @@ const DEMO_NAV: { id: Screen; label: string }[] = [
   { id: "notes", label: "4 · Clarify guidance" },
   { id: "audit", label: "5 · Audit log" },
 ];
-const VISIBLE = DEMO ? DEMO_NAV : SCREENS;
-const DEFAULT_SCREEN: Screen = DEMO ? "import" : "grading";
+const VISIBLE = CALIBRATION ? CALIBRATION_NAV : DEMO ? DEMO_NAV : SCREENS;
+const DEFAULT_SCREEN: Screen = CALIBRATION ? "grading" : DEMO ? "import" : "grading";
 
 export interface Nav {
   go: (screen: Screen, params?: Record<string, string | number>) => void;
@@ -139,7 +147,7 @@ export default function App() {
       </header>
 
       <div className="thesis" role="note">
-        <span><strong>AI does:</strong> finds comparable submissions, quotes the evidence, asks one focused question.</span>
+        <span><strong>Review support:</strong> {CALIBRATION ? "surfaces possible grading issues and reuses approved guidance." : "finds comparable submissions, quotes the evidence, asks one focused question."}</span>
         <span><strong>People decide:</strong> what counts, what is fair, and whether any grade changes.</span>
       </div>
 
@@ -150,6 +158,7 @@ export default function App() {
       ) : null}
 
       <main className="main" key={`${assessmentId}-${route.screen}`}>
+        {CALIBRATION ? <CalibrationDemo assessment={assessment} nav={nav} step={route.screen} onImported={onImported} /> : <>
         {assessment?.import_warning ? <Notice tone="warn">{assessment.import_warning}</Notice> : null}
         <ErrorBox error={assessments.error || settings.error} />
         {route.screen === "import" && <ImportScreen settings={settings.data} onImported={onImported} assessment={assessment} />}
@@ -168,6 +177,7 @@ export default function App() {
           <NotesScreen assessment={assessment} nav={nav} onGuidanceChanged={refreshAssessments} />
         )}
         {assessment && route.screen === "audit" && <AuditScreen assessment={assessment} />}
+        </>}
       </main>
 
       <footer className="footer">
