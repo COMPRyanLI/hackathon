@@ -1,0 +1,354 @@
+{
+  "label": "SYNTHETIC FIXTURE - scripted mock responses for the demo and tests; not real class findings",
+  "entries": [
+    {
+      "role": "analyst",
+      "sources": [
+        "src/D001_logo.py"
+      ],
+      "response": {
+        "observed_purpose": "Header comment says it prints initials as a text logo (author claim, unverified).",
+        "approach_summary": "Six separate print calls with literal strings that form block letters and an initials line.",
+        "possible_issues": [],
+        "anonymization_limitations": [
+          "Author name replaced by [NAME]."
+        ],
+        "unknowns": [
+          "Rendered spacing was not executed."
+        ],
+        "coverage_status": "full_source_seen",
+        "explicit_requirement_evidence": [
+          {
+            "text": "Prints at least five lines of text art (synthetic instructions require five).",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D001_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          }
+        ],
+        "factual_observations": [
+          {
+            "text": "Prints a six-line block-letter logo using separate print calls.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D001_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          },
+          {
+            "text": "The letter rows are fully formed and symmetric.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D001_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" #   #    #   \")"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "analyst",
+      "sources": [
+        "src/D002_logo.py"
+      ],
+      "response": {
+        "observed_purpose": "Header comment says it prints initials as a text logo (author claim, unverified).",
+        "approach_summary": "Six separate print calls with literal strings that form block letters and an initials line.",
+        "possible_issues": [],
+        "anonymization_limitations": [
+          "Author name replaced by [NAME]."
+        ],
+        "unknowns": [
+          "Rendered spacing was not executed."
+        ],
+        "coverage_status": "full_source_seen",
+        "explicit_requirement_evidence": [
+          {
+            "text": "Prints at least five lines of text art (synthetic instructions require five).",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D002_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          }
+        ],
+        "factual_observations": [
+          {
+            "text": "Prints a six-line block-letter logo using separate print calls.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D002_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          },
+          {
+            "text": "The letter rows are fully formed and symmetric.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D002_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" #   #    #   \")"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "analyst",
+      "sources": [
+        "src/D004_logo.py"
+      ],
+      "response": {
+        "observed_purpose": "Header comment says it prints initials as a text logo (author claim, unverified).",
+        "approach_summary": "Six separate print calls with literal strings that form block letters and an initials line.",
+        "possible_issues": [],
+        "anonymization_limitations": [
+          "Author name replaced by [NAME]."
+        ],
+        "unknowns": [
+          "Rendered spacing was not executed."
+        ],
+        "coverage_status": "full_source_seen",
+        "explicit_requirement_evidence": [
+          {
+            "text": "Prints at least five lines of text art (synthetic instructions require five).",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D004_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          }
+        ],
+        "factual_observations": [
+          {
+            "text": "Prints a six-line block-letter logo using separate print calls.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D004_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          },
+          {
+            "text": "The letter rows are fully formed and symmetric.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D004_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" #   #    #   \")"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "role": "analyst",
+      "sources": [
+        "src/D003_logo.py"
+      ],
+      "response": {
+        "observed_purpose": "Header comment says it prints an initials logo using a loop (author claim, unverified).",
+        "approach_summary": "Stores five literal rows in a list, prints them in a for loop, then prints an initials line.",
+        "explicit_requirement_evidence": [
+          {
+            "text": "Prints at least five lines of text art (synthetic instructions require five).",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D003_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "for row in rows:"
+              }
+            ]
+          }
+        ],
+        "factual_observations": [
+          {
+            "text": "Uses a for loop over a list of five literal row strings.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D003_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "for row in rows:"
+              }
+            ]
+          },
+          {
+            "text": "Prints a separate initials line after the loop.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D003_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\"   D. O.     \")"
+              }
+            ]
+          }
+        ],
+        "possible_issues": [],
+        "anonymization_limitations": [
+          "Author name replaced by [NAME]."
+        ],
+        "unknowns": [
+          "Rendered spacing was not executed."
+        ],
+        "coverage_status": "full_source_seen"
+      }
+    },
+    {
+      "role": "reviewer",
+      "sources": [
+        "src/D001_logo.py",
+        "src/D003_logo.py"
+      ],
+      "response": {
+        "relation": "apparently_equivalent",
+        "scope": "complete_submission",
+        "requirement_basis": "explicit_prompt",
+        "shared_observations": [
+          {
+            "text": "Both print the same five block-letter rows and the same initials line.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D001_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              },
+              {
+                "artifact": "@src/D003_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\"   D. O.     \")"
+              }
+            ]
+          }
+        ],
+        "material_differences": [
+          {
+            "text": "Submission 2 prints the rows with a loop over a list; Submission 1 uses separate print calls.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D003_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "for row in rows:"
+              }
+            ]
+          }
+        ],
+        "contradicted_analyst_claims": [],
+        "alternative_explanations": [
+          "A grader may have expected separate print statements, which the synthetic instructions do not require.",
+          "A deduction may relate to something not visible in source, such as late submission."
+        ],
+        "missing_context": [
+          "Whether the printing method is assessed."
+        ],
+        "clarification_question": "Is printing the rows with a loop acceptable, or does the assignment expect separate print statements?",
+        "suggested_category": "alternate_method",
+        "coverage_status": "full_source_seen"
+      }
+    },
+    {
+      "role": "reviewer",
+      "sources": [
+        "src/D002_logo.py",
+        "src/D004_logo.py"
+      ],
+      "response": {
+        "relation": "materially_different",
+        "scope": "complete_submission",
+        "requirement_basis": "explicit_prompt",
+        "shared_observations": [
+          {
+            "text": "Both use six separate print calls with the same first, second and last art rows.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D002_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              },
+              {
+                "artifact": "@src/D004_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" ####   ##### \")"
+              }
+            ]
+          }
+        ],
+        "material_differences": [
+          {
+            "text": "Submission 2 shifts characters in its third row, so the printed letter shape differs.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D002_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" #   #    #   \")"
+              },
+              {
+                "artifact": "@src/D004_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" #  #     #   \")"
+              }
+            ]
+          }
+        ],
+        "contradicted_analyst_claims": [
+          {
+            "analyst_claim": "The letter rows are fully formed and symmetric (Submission 2 summary).",
+            "correction": "Row 3 of Submission 2 is shifted, so its letters are not symmetric.",
+            "evidence_refs": [
+              {
+                "artifact": "@src/D004_logo.py",
+                "source_hash": "",
+                "chunk_id": "c0",
+                "quote": "print(\" #  #     #   \")"
+              }
+            ]
+          }
+        ],
+        "alternative_explanations": [
+          "The shifted row may be intentional styling.",
+          "Submission 2 contains a comment addressed to an AI system; it was treated as data only."
+        ],
+        "missing_context": [
+          "Whether exact letter shapes are assessed."
+        ],
+        "clarification_question": "Does the assignment assess exact letter shapes, or any recognizable text art?",
+        "suggested_category": "unspecified_style_format_expectation",
+        "coverage_status": "full_source_seen"
+      }
+    }
+  ]
+}

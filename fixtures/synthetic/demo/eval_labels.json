@@ -1,0 +1,9 @@
+{
+  "label": "SYNTHETIC evaluation labels for the synthetic demo fixture only. Written by the developer from the fixture's known construction; not real class labels.",
+  "useful_pairs": [
+    {"pair": ["D001", "D003"], "why": "same rows, literal prints vs loop (alternate method)", "expected_relation": "apparently_equivalent"},
+    {"pair": ["D002", "D004"], "why": "same structure, one art row changed", "expected_relation": "materially_different"},
+    {"pair": ["D001", "D002"], "why": "same art, different initials line", "expected_relation": "materially_different"},
+    {"pair": ["D007", "D008"], "why": "byte-identical helper file, different main files", "expected_relation": "materially_different"}
+  ]
+}

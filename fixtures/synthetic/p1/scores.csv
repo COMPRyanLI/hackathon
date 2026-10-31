@@ -1,0 +1,13 @@
+student_id,grader,SA3,SA6
+P001,Synthetic Grader A,9.0,8.0
+P002,Synthetic Grader B,10.0,6.0
+P003,Synthetic Grader C,8.5,9.0
+P004,Synthetic Grader A,9.0,7.0
+P005,Synthetic Grader B,9.5,10.0
+P006,Synthetic Grader C,,5.0
+P007,Synthetic Grader A,9.0,8.0
+P008,Synthetic Grader B,10.0,6.0
+P009,Synthetic Grader C,10.0,
+P010,Synthetic Grader A,9.0,9.0
+P011,Synthetic Grader B,8.0,8.0
+P012,Synthetic Grader C,7.0,7.0

@@ -1,0 +1,103 @@
+flag_id,source,grader_a,grader_b,score_a,score_b,text_a,text_b,similarity,explanation,rubric_note
+1,SYNTHETIC,Synthetic Grader A,Synthetic Grader A,9.0,9.0,"
+# Author: [NAME]
+# Date: 2026-09-29
+# Purpose: SYNTHETIC demo program
+
+RATE = 1.05
+INITIAL_BALANCE = 100.00
+END_YEAR = 20
+
+year = 0
+balance = INITIAL_BALANCE
+while year <= END_YEAR:
+    balance = balance * RATE
+    year = year + 1
+
+print(""Final balance:"", balance)
+print(""Interest earned:"", balance - INITIAL_BALANCE)
+
+","# Author: [NAME]
+# Date: 2026-09-29
+# Purpose: SYNTHETIC demo program
+
+RATE = 1.05
+INITIAL_BALANCE = 100.00
+END_YEAR = 20
+
+year = 0
+balance = INITIAL_BALANCE
+while year < END_YEAR:
+    balance = balance * RATE
+    year = year + 1
+
+print(""Final balance:"", balance)
+print(""Interest earned:"", balance - INITIAL_BALANCE)
+",0.91,,SA3 demo: neither program has an author header. Both loops look the same.
+2,SYNTHETIC,Synthetic Grader B,Synthetic Grader C,10.0,8.5,"# Author: [NAME]
+# Date: 2026-09-29
+# Purpose: SYNTHETIC demo program
+
+RATE = 1.05
+INITIAL_BALANCE = 250.00
+END_YEAR = 20
+
+year = 0
+balance = INITIAL_BALANCE
+for year in range(0, END_YEAR + 1):
+    balance = balance * RATE
+
+print(""Final balance:"", balance)
+print(""Interest earned:"", balance - INITIAL_BALANCE)
+","# Author: [NAME]
+# Date: 2026-09-29
+# Purpose: SYNTHETIC demo program
+
+RATE = 1.05
+INITIAL_BALANCE = 100.00
+END_YEAR = 25
+
+year = 0
+balance = INITIAL_BALANCE
+while year <= END_YEAR:
+    balance = balance * RATE
+    year = year + 1
+
+print(""Final balance:"", balance)
+print(""Interest earned:"", balance - INITIAL_BALANCE)
+",,,SA3 demo: the first program may have been late (dates in comments).
+3,SYNTHETIC,Synthetic Grader B,Synthetic Grader A,9.5,9.0,"# Author: [NAME]
+# Date: 2026-09-29
+# Purpose: SYNTHETIC demo program
+
+RATE = 1.05
+INITIAL_BALANCE = 100.00
+END_YEAR = 20
+
+year = 1
+balance = INITIAL_BALANCE
+while year <= END_YEAR:
+    balance = balance * RATE
+    year = year + 1
+
+print(""Final balance:"", balance)
+print(""Interest earned:"", balance - INITIAL_BALANCE)
+","# Author: [NAME]
+# Date: 2026-09-29
+# Purpose: SYNTHETIC demo program
+
+A_RATE = 1.05
+B_RATE = 1.04
+A_START = 100.00
+B_START = 150.00
+
+a_balance = A_START
+b_balance = B_START
+year = 0
+while a_balance < b_balance:
+    a_balance = a_balance * A_RATE
+    b_balance = b_balance * B_RATE
+    year = year + 1
+
+print(""Account A passes account B in year"", year)
+",0.88,,SA3 demo: header comments look equivalent.

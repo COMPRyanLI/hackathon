@@ -1,0 +1,10 @@
+{
+  "label": "SYNTHETIC DEMO - not real class data",
+  "dataset_key": "synthetic-demo",
+  "assessment_name": "SA1",
+  "csv": "scores.csv",
+  "source_dir": "src",
+  "filename_regex": "^(?P<student_id>D[0-9]+)(?:_.*)?\\.py$",
+  "instructions": "SYNTHETIC DEMO ASSIGNMENT (invented for testing; not a real course assignment). Write a Python program that prints a text-art logo of at least five lines. Any characters may be used. Include a header comment. The printing method is not specified.",
+  "suggested_pilot": ["D001", "D002", "D003", "D004", "D005", "D007", "D008"]
+}

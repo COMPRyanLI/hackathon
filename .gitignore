@@ -1,0 +1,38 @@
+# --- Private class data: never commit ---
+/cs1_scores_anon.csv
+/SA[0-9]*/
+/anon_pt1/
+/flags.csv
+/flags_code.py
+*grading guide*.pdf
+data/private/
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+
+# Local planning notes contain private class inventories; publish the run guides instead.
+/GradeLens-implementation-plan.md
+/GradeLens-implementation-plan.txt
+/CLAUDE_CODE_PROMPT.md
+/docs/GradeLens-P1-rubric-and-calibration-plan.md
+/docs/CLAUDE-CODE-P1-PROMPT.md
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Caches, logs, builds ---
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+backend/.venv/
+*.log
+logs/
+node_modules/
+frontend/dist/
+.vite/
