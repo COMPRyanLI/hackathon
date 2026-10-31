@@ -325,3 +325,36 @@ details > summary { cursor: pointer; color: var(--accent); margin: 0.3rem 0; }
   .grading-layout { grid-template-columns: 1fr; }
   .grading-queue { position: static; }
 }
+
+/* ---------------------------------------------------------------- demo polish */
+body { font-size: 15px; }
+
+.thesis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 2rem;
+  padding: 0.55rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+.thesis strong { color: var(--accent); }
+
+.callout {
+  border: 2px solid var(--warn);
+  background: var(--warn-bg);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  margin: 0.8rem 0;
+}
+.callout-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--warn);
+}
+.callout p { margin: 0.3rem 0 0; font-size: 1.05rem; }
+
+.question p { font-size: 1.15rem; font-weight: 500; }
