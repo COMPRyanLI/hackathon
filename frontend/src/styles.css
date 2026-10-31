@@ -369,3 +369,4 @@ details > summary { cursor: pointer; color: var(--accent); margin: 0.3rem 0; fon
   .grading-layout { grid-template-columns: 1fr; }
   .grading-queue { position: static; }
 }
+}
