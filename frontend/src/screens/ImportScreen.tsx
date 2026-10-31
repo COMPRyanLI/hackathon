@@ -3,6 +3,9 @@ import { api, type Assessment, type Json, type PublicSettings } from "../api";
 import ImportP1 from "./ImportP1";
 import { Badge, ErrorBox, KeyValues, List, Notice, errorText } from "../components/common";
 
+// Same flag as App.tsx: ?demo in the URL shows a simplified screen for recording.
+const DEMO = new URLSearchParams(window.location.search).has("demo");
+
 interface PreviewStudent {
   student_id: string;
   grader: string | null;
@@ -109,6 +112,41 @@ export default function ImportScreen({
       );
       onImported(result.assessment_id);
     });
+
+  if (DEMO) {
+    const loaded = !!assessment?.is_synthetic;
+    return (
+      <section>
+        <h2>Start a review</h2>
+        <div className="card" style={{ maxWidth: "42rem", padding: "1.6rem 1.8rem" }}>
+          <p style={{ marginTop: 0, fontSize: "1.1rem" }}>
+            Load a small set of student submissions with their recorded grades. GradeLens finds comparable work and
+            flags where grading may differ. It never changes a grade.
+          </p>
+          <div className="row gap wrap">
+            <button type="button" className="primary" disabled={busy} onClick={doDemo}>
+              {loaded ? "Reload demo dataset" : "Load demo dataset"}
+            </button>
+            {loaded ? (
+              <button
+                type="button"
+                onClick={() => {
+                  window.location.hash = "#/runs";
+                }}
+              >
+                Continue to runs →
+              </button>
+            ) : null}
+          </div>
+          <p className="muted small" style={{ marginBottom: 0 }}>
+            Synthetic data: invented students and scripted responses, no real grades.
+          </p>
+          <ErrorBox error={error} />
+          {loaded ? <Notice tone="ok">Demo dataset loaded ({assessment?.submission_count} submissions).</Notice> : null}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section>

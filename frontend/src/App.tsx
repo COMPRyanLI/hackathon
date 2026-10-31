@@ -34,8 +34,14 @@ const SCREENS: { id: Screen; label: string }[] = [
 
 // Open with ?demo (e.g. http://127.0.0.1:5173/?demo#/import) to show only the demo path.
 const DEMO = new URLSearchParams(window.location.search).has("demo");
-const DEMO_SCREENS: Screen[] = ["import", "runs", "review", "notes", "issues", "audit"];
-const VISIBLE = DEMO ? SCREENS.filter((s) => DEMO_SCREENS.includes(s.id)) : SCREENS;
+const DEMO_NAV: { id: Screen; label: string }[] = [
+  { id: "import", label: "1 · Load data" },
+  { id: "runs", label: "2 · Find comparisons" },
+  { id: "review", label: "3 · Review queue" },
+  { id: "notes", label: "4 · Clarify guidance" },
+  { id: "audit", label: "5 · Audit log" },
+];
+const VISIBLE = DEMO ? DEMO_NAV : SCREENS;
 const DEFAULT_SCREEN: Screen = DEMO ? "import" : "grading";
 
 export interface Nav {
