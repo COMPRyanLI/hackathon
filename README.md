@@ -20,6 +20,31 @@ walkthrough, test results and limitations in
 [`docs/P1-RUN-AND-DEMO.md`](docs/P1-RUN-AND-DEMO.md). The Grading workspace
 is now the first tab; all P0 screens remain.
 
+## How to run the demo (Windows)
+
+**Prerequisites:** Python 3.12 (3.11 will fail), Node.js LTS, Git. Ollama is not needed for the synthetic demo.
+
+**One-time setup**
+```
+git clone --branch backend https://github.com/COMPRyanLI/hackathon.git
+cd hackathon
+py -3.12 -m venv backend\.venv
+.\setup-gradelens.cmd
+```
+Don't click in the window while setup runs; it can cancel the install.
+
+**Run**
+```
+.\start-gradelens.cmd
+```
+Open **http://127.0.0.1:8000/?demo#/import**. Remove `?demo` for the full interface.
+
+After pulling frontend changes, rebuild with `cd frontend; npm.cmd run build`. For live reload while editing, run `npm.cmd run dev` in `frontend/` and open port 5173 instead. Use `npm.cmd`, not `npm`, in PowerShell.
+
+**Demo path:** Load data → Find comparisons → Review queue (decide, with a required reason) → Clarify guidance (approve a note, see impact) → Audit log.
+
+**Known issue:** synthetic runs may come back `partial` with only the D007/D008 case; the D001/D003 case and D006 impact result depend on mock mode applying correctly.
+
 ## Quick start (Windows)
 
 Prerequisites:
