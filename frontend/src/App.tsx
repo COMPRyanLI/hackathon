@@ -32,6 +32,12 @@ const SCREENS: { id: Screen; label: string }[] = [
   { id: "audit", label: "7 · Audit & export" },
 ];
 
+// Open with ?demo (e.g. http://127.0.0.1:5173/?demo#/import) to show only the demo path.
+const DEMO = new URLSearchParams(window.location.search).has("demo");
+const DEMO_SCREENS: Screen[] = ["import", "runs", "review", "notes", "issues", "audit"];
+const VISIBLE = DEMO ? SCREENS.filter((s) => DEMO_SCREENS.includes(s.id)) : SCREENS;
+const DEFAULT_SCREEN: Screen = DEMO ? "import" : "grading";
+
 export interface Nav {
   go: (screen: Screen, params?: Record<string, string | number>) => void;
   params: URLSearchParams;
@@ -40,7 +46,7 @@ export interface Nav {
 function parseHash(): { screen: Screen; params: URLSearchParams } {
   const raw = window.location.hash.replace(/^#\/?/, "");
   const [name, query = ""] = raw.split("?");
-  const screen = (SCREENS.find((s) => s.id === name)?.id ?? "grading") as Screen;
+  const screen = (SCREENS.find((s) => s.id === name)?.id ?? DEFAULT_SCREEN) as Screen;
   return { screen, params: new URLSearchParams(query) };
 }
 
@@ -118,7 +124,7 @@ export default function App() {
           </select>
         </label>
         <nav className="nav" aria-label="Screens">
-          {SCREENS.map((s) => (
+          {VISIBLE.map((s) => (
             <a key={s.id} href={`#/${s.id}`} className={route.screen === s.id ? "active" : ""}>
               {s.label}
             </a>
@@ -126,9 +132,14 @@ export default function App() {
         </nav>
       </header>
 
+      <div className="thesis" role="note">
+        <span><strong>AI does:</strong> finds comparable submissions, quotes the evidence, asks one focused question.</span>
+        <span><strong>People decide:</strong> what counts, what is fair, and whether any grade changes.</span>
+      </div>
+
       {assessment?.is_synthetic ? (
         <div className="synthetic-banner" role="status">
-          SYNTHETIC DEMO DATA — invented for testing; not real students or findings
+          SYNTHETIC DEMO DATA: invented for testing, not real students or findings
         </div>
       ) : null}
 
